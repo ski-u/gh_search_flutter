@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -10,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Search GitHub Repository',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Search GitHub Repository'),
     );
   }
 }
@@ -29,12 +31,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  var _repos = <dynamic>[];
 
-  void _incrementCounter() {
+  Future<void> _fetchRepos() async {
+    const url = 'https://api.github.com/search/repositories?q=flutter';
+    final response = await http.get(Uri.parse(url));
+
     setState(() {
-      _counter++;
+      _repos = json.decode(response.body)['items'] as List;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchRepos();
   }
 
   @override
@@ -43,24 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemCount: _repos.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text('${_repos[index]['full_name']}'),
+          );
+        },
       ),
     );
   }
