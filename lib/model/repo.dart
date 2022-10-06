@@ -7,8 +7,11 @@ part 'repo.g.dart';
 @freezed
 class Repo with _$Repo {
   const factory Repo({
-    required String fullName,
+    required String name,
+    required String? description,
+    required String? language,
+    required int stargazersCount,
   }) = _Repo;
 
-  factory Repo.fromJson(Map<String, Object?> json) => _$RepoFromJson(json);
+  factory Repo.fromJson(Map<String, dynamic> json) => _$RepoFromJson(json);
 }

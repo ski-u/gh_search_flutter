@@ -7,9 +7,15 @@ part of 'repo.dart';
 // **************************************************************************
 
 _$_Repo _$$_RepoFromJson(Map<String, dynamic> json) => _$_Repo(
-      fullName: json['full_name'] as String,
+      name: json['name'] as String,
+      description: json['description'] as String?,
+      language: json['language'] as String?,
+      stargazersCount: json['stargazers_count'] as int,
     );
 
 Map<String, dynamic> _$$_RepoToJson(_$_Repo instance) => <String, dynamic>{
-      'full_name': instance.fullName,
+      'name': instance.name,
+      'description': instance.description,
+      'language': instance.language,
+      'stargazers_count': instance.stargazersCount,
     };

@@ -20,7 +20,10 @@ Repo _$RepoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Repo {
-  String get fullName => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  int get stargazersCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -31,7 +34,11 @@ mixin _$Repo {
 abstract class $RepoCopyWith<$Res> {
   factory $RepoCopyWith(Repo value, $Res Function(Repo) then) =
       _$RepoCopyWithImpl<$Res>;
-  $Res call({String fullName});
+  $Res call(
+      {String name,
+      String? description,
+      String? language,
+      int stargazersCount});
 }
 
 /// @nodoc
@@ -44,13 +51,28 @@ class _$RepoCopyWithImpl<$Res> implements $RepoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? fullName = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? language = freezed,
+    Object? stargazersCount = freezed,
   }) {
     return _then(_value.copyWith(
-      fullName: fullName == freezed
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stargazersCount: stargazersCount == freezed
+          ? _value.stargazersCount
+          : stargazersCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -60,7 +82,11 @@ abstract class _$$_RepoCopyWith<$Res> implements $RepoCopyWith<$Res> {
   factory _$$_RepoCopyWith(_$_Repo value, $Res Function(_$_Repo) then) =
       __$$_RepoCopyWithImpl<$Res>;
   @override
-  $Res call({String fullName});
+  $Res call(
+      {String name,
+      String? description,
+      String? language,
+      int stargazersCount});
 }
 
 /// @nodoc
@@ -74,13 +100,28 @@ class __$$_RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? fullName = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? language = freezed,
+    Object? stargazersCount = freezed,
   }) {
     return _then(_$_Repo(
-      fullName: fullName == freezed
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stargazersCount: stargazersCount == freezed
+          ? _value.stargazersCount
+          : stargazersCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -88,16 +129,26 @@ class __$$_RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Repo with DiagnosticableTreeMixin implements _Repo {
-  const _$_Repo({required this.fullName});
+  const _$_Repo(
+      {required this.name,
+      required this.description,
+      required this.language,
+      required this.stargazersCount});
 
   factory _$_Repo.fromJson(Map<String, dynamic> json) => _$$_RepoFromJson(json);
 
   @override
-  final String fullName;
+  final String name;
+  @override
+  final String? description;
+  @override
+  final String? language;
+  @override
+  final int stargazersCount;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Repo(fullName: $fullName)';
+    return 'Repo(name: $name, description: $description, language: $language, stargazersCount: $stargazersCount)';
   }
 
   @override
@@ -105,7 +156,10 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Repo'))
-      ..add(DiagnosticsProperty('fullName', fullName));
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('language', language))
+      ..add(DiagnosticsProperty('stargazersCount', stargazersCount));
   }
 
   @override
@@ -113,13 +167,22 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Repo &&
-            const DeepCollectionEquality().equals(other.fullName, fullName));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.language, language) &&
+            const DeepCollectionEquality()
+                .equals(other.stargazersCount, stargazersCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(fullName));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(language),
+      const DeepCollectionEquality().hash(stargazersCount));
 
   @JsonKey(ignore: true)
   @override
@@ -135,12 +198,22 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
 }
 
 abstract class _Repo implements Repo {
-  const factory _Repo({required final String fullName}) = _$_Repo;
+  const factory _Repo(
+      {required final String name,
+      required final String? description,
+      required final String? language,
+      required final int stargazersCount}) = _$_Repo;
 
   factory _Repo.fromJson(Map<String, dynamic> json) = _$_Repo.fromJson;
 
   @override
-  String get fullName;
+  String get name;
+  @override
+  String? get description;
+  @override
+  String? get language;
+  @override
+  int get stargazersCount;
   @override
   @JsonKey(ignore: true)
   _$$_RepoCopyWith<_$_Repo> get copyWith => throw _privateConstructorUsedError;

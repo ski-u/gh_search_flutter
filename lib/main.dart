@@ -62,7 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: _repos.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            title: Text(_repos[index].fullName),
+            title: Text(_repos[index].name),
+            subtitle: Text(_repos[index].description ?? ''),
           );
         },
       ),
