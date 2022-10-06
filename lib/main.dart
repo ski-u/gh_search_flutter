@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:gh_search_flutter/model/repo.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -31,14 +32,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _repos = <dynamic>[];
+  var _repos = <Repo>[];
 
   Future<void> _fetchRepos() async {
     const url = 'https://api.github.com/search/repositories?q=flutter';
     final response = await http.get(Uri.parse(url));
 
     setState(() {
-      _repos = json.decode(response.body)['items'] as List;
+      _repos = List<Repo>.from(json.decode(response.body)['items'].map((data) {
+        return Repo.fromJson(data);
+      }));
     });
   }
 
@@ -59,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: _repos.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            title: Text('${_repos[index]['full_name']}'),
+            title: Text(_repos[index].fullName),
           );
         },
       ),
