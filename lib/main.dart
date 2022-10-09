@@ -66,6 +66,23 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 12,
+                      backgroundImage: NetworkImage(
+                        _repos[index].owner.avatarUrl,
+                      ),
+                      backgroundColor: Colors.transparent,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      _repos[index].owner.login,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
                 Text(
                   _repos[index].name,
                   style: Theme.of(context).textTheme.bodyLarge,
@@ -75,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   _repos[index].description ?? '',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
                 Row(
                   children: [
                     Row(
