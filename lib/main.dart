@@ -61,9 +61,44 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(16),
         itemCount: _repos.length,
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(_repos[index].name),
-            subtitle: Text(_repos[index].description ?? ''),
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _repos[index].name,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  _repos[index].description ?? '',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star_border_outlined,
+                          color: Colors.grey,
+                        ),
+                        Text(
+                          '${_repos[index].stargazersCount}',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 16),
+                    Text(
+                      _repos[index].language ?? '',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           );
         },
       ),
