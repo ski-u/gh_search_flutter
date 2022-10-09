@@ -21,6 +21,7 @@ Repo _$RepoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Repo {
   String get name => throw _privateConstructorUsedError;
+  User get owner => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get language => throw _privateConstructorUsedError;
   int get stargazersCount => throw _privateConstructorUsedError;
@@ -36,9 +37,12 @@ abstract class $RepoCopyWith<$Res> {
       _$RepoCopyWithImpl<$Res>;
   $Res call(
       {String name,
+      User owner,
       String? description,
       String? language,
       int stargazersCount});
+
+  $UserCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -52,6 +56,7 @@ class _$RepoCopyWithImpl<$Res> implements $RepoCopyWith<$Res> {
   @override
   $Res call({
     Object? name = freezed,
+    Object? owner = freezed,
     Object? description = freezed,
     Object? language = freezed,
     Object? stargazersCount = freezed,
@@ -61,6 +66,10 @@ class _$RepoCopyWithImpl<$Res> implements $RepoCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as User,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -75,6 +84,13 @@ class _$RepoCopyWithImpl<$Res> implements $RepoCopyWith<$Res> {
               as int,
     ));
   }
+
+  @override
+  $UserCopyWith<$Res> get owner {
+    return $UserCopyWith<$Res>(_value.owner, (value) {
+      return _then(_value.copyWith(owner: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -84,9 +100,13 @@ abstract class _$$_RepoCopyWith<$Res> implements $RepoCopyWith<$Res> {
   @override
   $Res call(
       {String name,
+      User owner,
       String? description,
       String? language,
       int stargazersCount});
+
+  @override
+  $UserCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -101,6 +121,7 @@ class __$$_RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
+    Object? owner = freezed,
     Object? description = freezed,
     Object? language = freezed,
     Object? stargazersCount = freezed,
@@ -110,6 +131,10 @@ class __$$_RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as User,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -131,6 +156,7 @@ class __$$_RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
 class _$_Repo with DiagnosticableTreeMixin implements _Repo {
   const _$_Repo(
       {required this.name,
+      required this.owner,
       required this.description,
       required this.language,
       required this.stargazersCount});
@@ -140,6 +166,8 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
   @override
   final String name;
   @override
+  final User owner;
+  @override
   final String? description;
   @override
   final String? language;
@@ -148,7 +176,7 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Repo(name: $name, description: $description, language: $language, stargazersCount: $stargazersCount)';
+    return 'Repo(name: $name, owner: $owner, description: $description, language: $language, stargazersCount: $stargazersCount)';
   }
 
   @override
@@ -157,6 +185,7 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
     properties
       ..add(DiagnosticsProperty('type', 'Repo'))
       ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('owner', owner))
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('language', language))
       ..add(DiagnosticsProperty('stargazersCount', stargazersCount));
@@ -168,6 +197,7 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
         (other.runtimeType == runtimeType &&
             other is _$_Repo &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.owner, owner) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.language, language) &&
@@ -180,6 +210,7 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(owner),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(language),
       const DeepCollectionEquality().hash(stargazersCount));
@@ -200,6 +231,7 @@ class _$_Repo with DiagnosticableTreeMixin implements _Repo {
 abstract class _Repo implements Repo {
   const factory _Repo(
       {required final String name,
+      required final User owner,
       required final String? description,
       required final String? language,
       required final int stargazersCount}) = _$_Repo;
@@ -208,6 +240,8 @@ abstract class _Repo implements Repo {
 
   @override
   String get name;
+  @override
+  User get owner;
   @override
   String? get description;
   @override
